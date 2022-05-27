@@ -11,8 +11,8 @@
 `npm run dev` — запускает сервер с hot-reload
 
 ## Публичный IP-адрес сервера
-``
+`84.252.142.183`
 
 ## Доменное имя
-`` — фронтенд   
-`` — бэкенд
+`mesto.roman.nomoredomains.xyz` — фронтенд   
+`api.mesto.roman.nomoredomains.xyz` — бэкенд
