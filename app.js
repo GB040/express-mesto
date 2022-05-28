@@ -29,12 +29,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 }); //* подключаемся к серверу mongo
 
-app.use(limiter); //* применили ко всем запросам защиту от DoS-атак
-app.use(bodyParser.json()); //* указали парсить запросы с JSON
-app.use(bodyParser.urlencoded({ extended: true })); //* указали парсить запросы с веб-страницами
-
-app.use(requestLogger); //* подключили логгер запросов до всех обработчиков роутов
-
+//* разрешили кросс-доменные запросы
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -42,6 +37,13 @@ app.use(function (req, res, next) {
 
   next();
 });
+
+app.use(limiter); //* применили ко всем запросам защиту от DoS-атак
+app.use(bodyParser.json()); //* указали парсить запросы с JSON
+app.use(bodyParser.urlencoded({ extended: true })); //* указали парсить запросы с веб-страницами
+
+app.use(requestLogger); //* подключили логгер запросов до всех обработчиков роутов
+
 
 //* роуты, не требующие авторизации
 app.post('/signin', validateLogin, login); //* обработчик POST-запроса на роут '/signin'
