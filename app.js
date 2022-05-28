@@ -25,7 +25,7 @@ const limiter = rateLimit({
 
 // CORS
 const corsOptions = {
-  origin: '*',
+  origin: 'https://mesto.roman.nomoredomains.xyz',
   credentials: true,
 };
 
