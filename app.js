@@ -1,5 +1,6 @@
 require('dotenv').config(); //* модуль безопасности, для использования секретного jwt-ключа из .env файла
 const express = require('express');
+const cors = require('cors') // CORS
 const mongoose = require('mongoose'); //* модуль для взаимодействия MongoDB и JS
 const bodyParser = require('body-parser'); //* модуль для парсинга req.body
 const rateLimit = require('express-rate-limit'); //* модуль для ограничения количества запросов
@@ -29,14 +30,17 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 }); //* подключаемся к серверу mongo
 
-//* разрешили кросс-доменные запросы
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+// //* разрешили кросс-доменные запросы
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
 
-  next();
-});
+//   next();
+// });
+
+app.use(cors()) // CORS
+app.options('*', cors()) // CORS
 
 app.use(limiter); //* применили ко всем запросам защиту от DoS-атак
 app.use(bodyParser.json()); //* указали парсить запросы с JSON
