@@ -1,6 +1,6 @@
 require('dotenv').config(); //* модуль безопасности, для использования секретного jwt-ключа из .env файла
 const express = require('express');
-const cors = require('cors') // CORS
+const cors = require('cors'); // CORS
 const mongoose = require('mongoose'); //* модуль для взаимодействия MongoDB и JS
 const bodyParser = require('body-parser'); //* модуль для парсинга req.body
 const rateLimit = require('express-rate-limit'); //* модуль для ограничения количества запросов
@@ -29,7 +29,6 @@ const limiter = rateLimit({
 //   credentials: true,
 // };
 
-
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -40,11 +39,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(limiter); //* применили ко всем запросам защиту от DoS-атак
 app.use(bodyParser.json()); //* указали парсить запросы с JSON
 app.use(bodyParser.urlencoded({ extended: true })); //* указали парсить запросы с веб-страницами
-app.use(cors()) // CORS
+app.use(cors()); // CORS
 // app.use(cors(corsOptions)); // CORS
 
 app.use(requestLogger); //* подключили логгер запросов до всех обработчиков роутов
-
 
 //* роуты, не требующие авторизации
 app.post('/signin', validateLogin, login); //* обработчик POST-запроса на роут '/signin'
