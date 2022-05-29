@@ -23,11 +23,11 @@ const limiter = rateLimit({
   message: 'Слишком много запросов с вашего IP, попробуйте повторить попытку позже',
 });
 
-// CORS
-const corsOptions = {
-  origin: 'https://mesto.roman.nomoredomains.xyz',
-  credentials: true,
-};
+// // CORS
+// const corsOptions = {
+//   origin: 'https://mesto.roman.nomoredomains.xyz',
+//   credentials: true,
+// };
 
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -40,7 +40,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(limiter); //* применили ко всем запросам защиту от DoS-атак
 app.use(bodyParser.json()); //* указали парсить запросы с JSON
 app.use(bodyParser.urlencoded({ extended: true })); //* указали парсить запросы с веб-страницами
-app.use(cors(corsOptions)); // CORS
+app.use(cors()) // CORS
+// app.use(cors(corsOptions)); // CORS
 
 app.use(requestLogger); //* подключили логгер запросов до всех обработчиков роутов
 
