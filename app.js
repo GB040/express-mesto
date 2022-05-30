@@ -29,7 +29,7 @@ const limiter = rateLimit({
 //   credentials: true,
 // };
 
-mongoose.connect('https://84.252.142.183:3000/mongodb', {
+mongoose.connect('https://api.mesto.roman.nomoredomains.xyzls/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
