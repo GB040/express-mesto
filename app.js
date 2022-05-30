@@ -34,7 +34,9 @@ mongoose.connect('https://api.mesto.roman.nomoredomains.xyzls/mestodb', {
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
-}); //* подключаемся к серверу mongo
+}) //* подключаемся к серверу mongo
+  .then(() => console.log('Mongo connected success'))
+  .catch(err => console.log(err))
 
 app.use(limiter); //* применили ко всем запросам защиту от DoS-атак
 app.use(bodyParser.json()); //* указали парсить запросы с JSON
